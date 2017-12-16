@@ -69,7 +69,7 @@ class Service(object):
             return
         # try to open the log file passed (may need root privs)
         try:
-            self.log_fh = logging.FileHandler(self.args.log)
+            self.log_fh = logging.handlers.WatchedFileHandler(self.args.log)
 
             self.log_fh.setLevel(logging.DEBUG)
             self.log_fh.setFormatter(self.logform)
@@ -97,7 +97,7 @@ class Service(object):
         if (self.parser == None):
             if (self.log != None):
                 self.log.error('Service class not configured')
-            else
+            else:
                 print('Service class not configured')
             sys.exit(1)
         try:
